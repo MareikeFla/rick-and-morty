@@ -1,4 +1,4 @@
-export function CharacterCard({ image, name, status, type }) {
+export function CharacterCard({ image, name, status, type, episode }) {
   const characterCard = document.createElement("li");
   const cardContainer = document.querySelector('[data-js="card-container"]');
   characterCard.innerHTML = `<div class="card__image-container">
@@ -18,7 +18,7 @@ export function CharacterCard({ image, name, status, type }) {
       <dt class="card__info-title">Type</dt>
       <dd class="card__info-description">${type}</dd>
       <dt class="card__info-title">Occurrences</dt>
-      <dd class="card__info-description">51</dd>
+      <dd class="card__info-description">${episode.length}</dd>
     </dl>
   </div>`;
   cardContainer.append(characterCard);
