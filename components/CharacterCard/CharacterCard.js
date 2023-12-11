@@ -7,6 +7,7 @@ export function CharacterCard({ image, name, status, type, episode }) {
       class="card__image"
       src=${image}
       alt="image of ${name}"
+      crossorigin="anonymous"
     />
     <div class="card__image-gradient"></div>
   </div>
