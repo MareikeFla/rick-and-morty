@@ -1,3 +1,5 @@
+import { page } from "../NavPagination/NavPagination.js";
+import { updatePageCounter } from "../NavPagination/NavPagination.js";
 export function CharacterCard({ image, name, status, type, episode }) {
   const characterCard = document.createElement("li");
   const cardContainer = document.querySelector('[data-js="card-container"]');
@@ -7,7 +9,6 @@ export function CharacterCard({ image, name, status, type, episode }) {
       class="card__image"
       src=${image}
       alt="image of ${name}"
-      crossorigin="anonymous"
     />
     <div class="card__image-gradient"></div>
   </div>
@@ -23,4 +24,19 @@ export function CharacterCard({ image, name, status, type, episode }) {
     </dl>
   </div>`;
   cardContainer.append(characterCard);
+}
+
+export async function fetchCharacters() {
+  const url = `https://rickandmortyapi.com/api/character?page=${page}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  updatePageCounter(data, page);
+  console.log(data);
+  return data.results;
+}
+export async function createCharacterCards() {
+  const characterArray = await fetchCharacters();
+  characterArray.forEach((character) => {
+    CharacterCard(character);
+  });
 }
